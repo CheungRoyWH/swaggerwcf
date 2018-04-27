@@ -1,0 +1,1 @@
+nuget pack lifra.swaggerwcf.nuspec
