@@ -26,5 +26,16 @@ namespace SwaggerWcf.Test.Service
     )]
     public class AuthorService : BaseCRUDService<Author>, IAuthorService
     {
+        public override Author Get(string id)
+        {
+            var obj = base.Get(id);
+            obj.Locales = new List<LocaleModel>
+            {
+                new LocaleModel {  Language = LocaleLanguage.En, Key = "Name", Value = "Value(EN)"},
+                new LocaleModel {  Language = LocaleLanguage.ZhCn, Key = "Name", Value = "Value(CN)"},
+            };
+
+            return obj;
+        }
     }
 }

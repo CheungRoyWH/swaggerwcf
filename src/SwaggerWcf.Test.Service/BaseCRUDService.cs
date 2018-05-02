@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SwaggerWcf.Test.Service
 {
-    public class BaseCRUDService<T> : BaseService<T>, IBaseCRUDService<T> where T : BaseEntity
+    public abstract class BaseCRUDService<T> : BaseService<T>, IBaseCRUDService<T> where T : BaseEntity
     {
         public virtual T Create(T item)
         {
@@ -26,7 +26,7 @@ namespace SwaggerWcf.Test.Service
 
         public virtual T Get(string id)
         {
-            var result = default(T);
+            var result = Activator.CreateInstance<T>();
             result.Id = id;
             return result;
         }

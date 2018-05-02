@@ -107,6 +107,13 @@ namespace SwaggerWcf.Models
                         }
                         writer.WriteEndArray();
                     }
+                    else if (Example.GetType() == typeof(string) &&
+                            ((string)Example).StartsWith("{") &&
+                            ((string)Example).EndsWith("}"))
+                    {
+                        //Write Raw Value for Json example
+                        writer.WriteRawValue((string)Example);
+                    }
                     else
                         writer.WriteValue(Example);
                 }
